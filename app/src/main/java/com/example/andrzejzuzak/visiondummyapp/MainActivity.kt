@@ -11,6 +11,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import java.io.File
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
     var photoDetectionButton: Button? = null
     var imageImageView: ImageView? = null
     var file: Uri? = null
+
+    companion object {
+        val CAMERA_REQUEST_ID = 1
+        val TAG = MainActivity::class.java.simpleName
+        val DETECTION_FROM_PHOTO_REQ_CODE = 123
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,13 +84,18 @@ class MainActivity : AppCompatActivity() {
             val intent = DetectionFromPhotoActivity.createIntentWithData(this, file?.path!!)
 
             imageImageView?.setImageBitmap(imageBitmap)
-            startActivity(intent)
-        }
-    }
+            startActivityForResult(intent, DETECTION_FROM_PHOTO_REQ_CODE)
+        } else if(requestCode == DETECTION_FROM_PHOTO_REQ_CODE && resultCode == Activity.RESULT_OK) {
+            val fileToDelete = File(file?.getPath())
 
-    companion object {
-        val CAMERA_REQUEST_ID = 1
-        val TAG = MainActivity.javaClass.simpleName
+            if (fileToDelete.exists()) {
+                if (fileToDelete.delete()) {
+                    Log.i(TAG, "File deleted")
+                } else {
+                    Log.i(TAG, "File not deleted")
+                }
+            }
+        }
     }
 
 }

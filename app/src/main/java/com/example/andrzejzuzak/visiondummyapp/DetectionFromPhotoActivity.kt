@@ -1,5 +1,6 @@
 package com.example.andrzejzuzak.visiondummyapp
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -18,7 +19,7 @@ class DetectionFromPhotoActivity : AppCompatActivity() {
 
     companion object {
         @JvmField val EXTRA_IMAGE = "extra.image"
-        @JvmField val TAG = DetectionFromPhotoActivity.javaClass.simpleName
+        @JvmField val TAG = DetectionFromPhotoActivity::class.java.simpleName
 
         fun createIntentWithData(context: Context, dataPath: String): Intent {
             val intent = Intent(context, DetectionFromPhotoActivity::class.java)
@@ -63,6 +64,11 @@ class DetectionFromPhotoActivity : AppCompatActivity() {
     private fun extractDataFromExtras() {
         val path = intent.extras.getString(EXTRA_IMAGE)
         bitmap = BitmapFactory.decodeFile(path)
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_OK)
+        super.onBackPressed()
     }
 
 }

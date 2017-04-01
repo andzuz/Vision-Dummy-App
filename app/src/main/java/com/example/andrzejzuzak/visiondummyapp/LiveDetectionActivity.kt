@@ -24,7 +24,7 @@ class LiveDetectionActivity : AppCompatActivity(), SurfaceHolder.Callback, Detec
 
     companion object {
         val REQUEST_CAMERA_PERMISSION_ID = 1001
-        val TAG = LiveDetectionActivity.javaClass.simpleName
+        val TAG = LiveDetectionActivity::class.java.simpleName
 
         fun createIntent(context: Context): Intent {
             return Intent(context, LiveDetectionActivity::class.java)
