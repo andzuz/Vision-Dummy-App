@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Vision Dummy App</string>
+    <string name="login_error_validation">E-mail and password must not be empty and in correct format</string>
+    <string name="login_error_wrong_credentials">Wrong credentials</string>
+    <string name="error_generic_message">Something went wrong</string>
+    <string name="register_passwords_dont_match_error">Passwords in both \'Password\' fields must match.</string>
+    <string name="register_email_in_use_error">This email is already in use.</string>
+    <string name="error_title">Error</string>
+    <string name="history_no_results_error">No results were found</string>
+
+    <!-- facebook -->
+    <string name="facebook_app_id">1801814223192943</string>
+    <string name="fb_login_protocol_scheme">fb1801814223192943</string>
 </resources>
